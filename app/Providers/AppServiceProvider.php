@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Views\Composers\GenreComposer;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        View::share('genres', Genre::orderBy('name')->get());
+
+        View::composer('components.genres.*', GenreComposer::class);
     }
 }
